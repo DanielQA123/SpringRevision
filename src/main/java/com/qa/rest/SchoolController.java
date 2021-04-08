@@ -3,17 +3,44 @@ package com.qa.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.qa.persistance.domain.SchoolDomain;
 
 @RestController
 @RequestMapping("/school")
 public class SchoolController {
 	
 	private Long id = 0L;
-	private List<School> schoolList = new ArrayList<>();
+	private List<SchoolDomain> schoolList = new ArrayList<>();
 	
 	//REQUESTS => GET, POST, PUT, DELETE
 	
 	//GET: 
+	
+	@GetMapping("/helloWorld")
+	public String helloWorld() {
+		return "Hello world";
+	}
+	
+	//GET => READ ALL: 
+	
+	@GetMapping("/readAll")
+	public List<SchoolDomain> readAll(){
+		return schoolList;
+	}
+	
+	//GET => READ ID:
+	@GetMapping("/read/{id}")
+	public SchoolDomain readSchool(@PathVariable("id") Long id) {
+		return schoolList.get(id.intValue());
+	}
+	
+//	//POST => CREATE:
+//	
+	
+	
 }

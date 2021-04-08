@@ -75,6 +75,12 @@ public class SchoolDomain {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
+
+	@Override
+	public String toString() {
+		return "SchoolDomain [id=" + id + ", name=" + name + ", email=" + email + ", favSubject=" + favSubject
+				+ ", age=" + age + "]";
+	}
 	
 	
 	
