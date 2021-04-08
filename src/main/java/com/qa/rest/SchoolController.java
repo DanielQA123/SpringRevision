@@ -3,6 +3,7 @@ package com.qa.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +54,7 @@ public class SchoolController {
 	}
 	
 	//PUT = UPDATE: 
+	
 	@PutMapping("/update/{id}")
 	public SchoolDomain updateSchool(@PathVariable("id") Long id, @RequestBody SchoolDomain school ) {
 		this.schoolList.remove(id.intValue());
@@ -60,11 +62,11 @@ public class SchoolController {
 		return this.schoolList.get(id.intValue());
 	}
 	
-	
-	
-	
 	//DELETE:
 	
-	
+	@DeleteMapping("delete/{id}")
+	public SchoolDomain deleteSchool(@PathVariable("id") Long id) {
+		return schoolList.remove(id.intValue());
+	}
 	
 }
