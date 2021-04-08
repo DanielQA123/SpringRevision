@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,13 +37,34 @@ public class SchoolController {
 	}
 	
 	//GET => READ ID:
+	
 	@GetMapping("/read/{id}")
 	public SchoolDomain readSchool(@PathVariable("id") Long id) {
 		return schoolList.get(id.intValue());
 	}
 	
-//	//POST => CREATE:
-//	
+    //POST => CREATE:
+	
+	@PostMapping("/create")
+	public boolean createSchool(@RequestBody SchoolDomain school) {
+		school.setId(id);
+		id++;
+		return schoolList.add(school);
+	}
+	
+	//PUT = UPDATE: 
+	@PutMapping("/update/{id}")
+	public SchoolDomain updateSchool(@PathVariable("id") Long id, @RequestBody SchoolDomain school ) {
+		this.schoolList.remove(id.intValue());
+		this.schoolList.add(id.intValue(), school);
+		return this.schoolList.get(id.intValue());
+	}
+	
+	
+	
+	
+	//DELETE:
+	
 	
 	
 }
