@@ -18,6 +18,9 @@ import com.qa.persistance.domain.SchoolDomain;
 @RequestMapping("/school")
 public class SchoolController {
 	
+	
+	
+	
 	private Long id = 0L;
 	private List<SchoolDomain> schoolList = new ArrayList<>();
 	
