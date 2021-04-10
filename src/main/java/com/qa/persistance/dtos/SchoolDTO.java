@@ -1,10 +1,11 @@
 package com.qa.persistance.dtos;
 
 public class SchoolDTO {
-	
+
 	private Long id;
 	private String name;
 	private String email;
+	private String surname;
 	private String favSubject;
 	private Integer age;
 	
@@ -13,19 +14,21 @@ public class SchoolDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SchoolDTO(Long id, String name, String email, String favSubject, Integer age) {
+	public SchoolDTO(Long id, String name, String email, String surname, String favSubject, Integer age) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
+		this.surname = surname;
 		this.favSubject = favSubject;
 		this.age = age;
 	}
 
-	public SchoolDTO(String name, String email, String favSubject, Integer age) {
+	public SchoolDTO(String name, String email, String surname, String favSubject, Integer age) {
 		super();
 		this.name = name;
 		this.email = email;
+		this.surname = surname;
 		this.favSubject = favSubject;
 		this.age = age;
 	}
@@ -54,6 +57,14 @@ public class SchoolDTO {
 		this.email = email;
 	}
 
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
 	public String getFavSubject() {
 		return favSubject;
 	}
@@ -69,8 +80,7 @@ public class SchoolDTO {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-	
-	
-	
 
+	
+	
 }
