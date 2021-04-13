@@ -62,9 +62,14 @@ public class SchoolController {
 
 	// GET => READ ID:
 
+//	@GetMapping("/read/{id}")
+//	public SchoolDomain readSchool(@PathVariable("id") Long id) {
+//		return schoolList.get(id.intValue());
+//	}
+	
 	@GetMapping("/read/{id}")
-	public SchoolDomain readSchool(@PathVariable("id") Long id) {
-		return schoolList.get(id.intValue());
+	public ResponseEntity<SchoolDTO> readSchool(@PathVariable("id") Long id) {
+		return new ResponseEntity<SchoolDTO>(this.service.readSchool(id), HttpStatus.OK);
 	}
 
 	// POST => CREATE:
@@ -82,19 +87,33 @@ public class SchoolController {
 	}
 
 	// PUT = UPDATE:
-
+	
+	//OLD METHOD: 
+//	@PutMapping("/update/{id}")
+//	public SchoolDomain updateSchool(@PathVariable("id") Long id, @RequestBody SchoolDomain school) {
+//		this.schoolList.remove(id.intValue());
+//		this.schoolList.add(id.intValue(), school);
+//		return this.schoolList.get(id.intValue());
+//	}
+	
 	@PutMapping("/update/{id}")
-	public SchoolDomain updateSchool(@PathVariable("id") Long id, @RequestBody SchoolDomain school) {
-		this.schoolList.remove(id.intValue());
-		this.schoolList.add(id.intValue(), school);
-		return this.schoolList.get(id.intValue());
+	public ResponseEntity<SchoolDTO> updateSchool(@PathVariable("id") Long id, @RequestBody SchoolDomain school) {
+		return new ResponseEntity<SchoolDTO>(this.service.updateSchool(id, school), HttpStatus.ACCEPTED);
 	}
 
 	// DELETE:
 
-	@DeleteMapping("delete/{id}")
-	public SchoolDomain deleteSchool(@PathVariable("id") Long id) {
-		return schoolList.remove(id.intValue());
+//  OLD METHOD:
+//	@DeleteMapping("delete/{id}")
+//	public SchoolDomain deleteSchool(@PathVariable("id") Long id) {
+//		return schoolList.remove(id.intValue());
+//	}
+	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<SchoolDTO> deleteSchool(@PathVariable("id") Long id) {
+		return this.service.delete(id) ?
+				new ResponseEntity<SchoolDTO>(HttpStatus.NO_CONTENT):
+				new ResponseEntity<SchoolDTO>(HttpStatus.INTERNAL_SERVER_ERROR);	
 	}
 
 }

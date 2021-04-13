@@ -38,11 +38,19 @@ public class SchoolService {
 // ==============
 	
 //READ ALL:
+	
 	public List<SchoolDTO> readAll(){
 		List<SchoolDomain> dbList = this.repo.findAll();
 		List<SchoolDTO> resultList = dbList.stream().map(this::mapToDTO).collect(Collectors.toList());
 		return resultList;
 	}
+	
+//READ BY ID:
+	
+	public SchoolDTO readSchool(Long id) {
+		return mapToDTO(this.repo.findById(id).orElseThrow());
+	}
+	
 	
 // =============
 // POST:
@@ -59,8 +67,7 @@ public class SchoolService {
 //	return this.map(this.repo.save(school));
 //  }
 	
-// =>>>>
-	
+// POST/CREATE:
 	
 	public SchoolDTO create(SchoolDomain school) {
 		return this.mapToDTO(this.repo.save(school));
@@ -70,10 +77,26 @@ public class SchoolService {
 // =============
 // PUT:
 // ==============
+	
+	public SchoolDTO updateSchool(Long id, SchoolDomain newInfo) {
+		this.repo.findById(id).orElseThrow();
+		
+		//The target
+		newInfo.setId(id);
+		
+		return this.mapToDTO(this.repo.save(newInfo));
+		
+	}
+	
+
 
 // =============
 // DELETE:
 // ==============
-
-
+	
+	public boolean delete(Long id) {
+		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
+	}
+	
 }
