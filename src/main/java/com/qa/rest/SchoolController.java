@@ -42,12 +42,22 @@ public class SchoolController {
 	public String helloWorld() {
 		return "Hello world";
 	}
+	
+	// REQUESTS => GET, POST, PUT, DELETE
 
 	// GET => READ ALL:
-
+	
+// OLD METHOD of readALL/Get request: 
+// ===> 
+	
+//	@GetMapping("/readAll")
+//	public List<SchoolDomain> readAll() {
+//		return schoolList;
+//	}
+	
 	@GetMapping("/readAll")
-	public List<SchoolDomain> readAll() {
-		return schoolList;
+	public ResponseEntity<List <SchoolDTO>> readAll() {
+		return new ResponseEntity<List<SchoolDTO>>(this.service.readAll(), HttpStatus.ACCEPTED);
 	}
 
 	// GET => READ ID:

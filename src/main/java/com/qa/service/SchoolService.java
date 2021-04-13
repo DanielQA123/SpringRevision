@@ -1,5 +1,8 @@
 package com.qa.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,21 +24,29 @@ public class SchoolService {
 		this.mapper = mapper;
 	}
 	
-	private SchoolDTO map(SchoolDomain model) {
+//	private SchoolDTO map(SchoolDomain model) {
+//		return this.mapper.map(model, SchoolDTO.class);
+//	}
+// ==> map to MapToDTO because of the stream. 
+	
+	private SchoolDTO mapToDTO(SchoolDomain model) {
 		return this.mapper.map(model, SchoolDTO.class);
 	}
 	
-//	private SchoolDTO mapToDTO(SchoolDomain model) {
-//		return this.mapper.map(model, SchoolDTO.class);
-//	}
+// =============
+// GET: (Need to create a stream)
+// ==============
 	
-	// =============
-	// GET:
-	// ==============
-
-	// =============
-	// POST:
-	// ==============
+//READ ALL:
+	public List<SchoolDTO> readAll(){
+		List<SchoolDomain> dbList = this.repo.findAll();
+		List<SchoolDTO> resultList = dbList.stream().map(this::mapToDTO).collect(Collectors.toList());
+		return resultList;
+	}
+	
+// =============
+// POST:
+// ==============
 	
 //! OLD Methods: 
 	
@@ -44,25 +55,25 @@ public class SchoolService {
 //	}
 //	=>>>
 	
-	public SchoolDTO create(SchoolDomain school) {
-	return this.map(this.repo.save(school));
-  }
+//	public SchoolDTO create(SchoolDomain school) {
+//	return this.map(this.repo.save(school));
+//  }
 	
 // =>>>>
 	
 	
-//	public SchoolDTO create(SchoolDomain school) {
-//		return this.mapToDTO(this.repo.save(school));
-//	}
+	public SchoolDTO create(SchoolDomain school) {
+		return this.mapToDTO(this.repo.save(school));
+	}
 	
 
-	// =============
-	// PUT:
-	// ==============
+// =============
+// PUT:
+// ==============
 
-	// =============
-	// DELETE:
-	// ==============
+// =============
+// DELETE:
+// ==============
 
 
 }
