@@ -1,5 +1,8 @@
 package com.qa.persistance.domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public class DistrictDomain {
 	
 	//Attributes: 
