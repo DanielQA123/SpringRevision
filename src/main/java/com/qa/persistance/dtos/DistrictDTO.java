@@ -1,37 +1,22 @@
-package com.qa.persistance.domain;
+package com.qa.persistance.dtos;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-
-@Entity
-public class DistrictDomain {
+public class DistrictDTO {
 	
-	//Attributes: 
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotNull
 	private String schoolName;
 	private String postcode;
 	private Integer capacity;
 	
+	private List<SchoolDTO> schoolList;
 	
-	private List<SchoolDomain> schoolList;
-	
-	public DistrictDomain() {
+	public DistrictDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public DistrictDomain(Long id, String schoolName, String postcode, Integer capacity,
-			List<SchoolDomain> districtList) {
+	public DistrictDTO(Long id, String schoolName, String postcode, Integer capacity, List<SchoolDTO> schoolList) {
 		super();
 		this.id = id;
 		this.schoolName = schoolName;
@@ -40,8 +25,7 @@ public class DistrictDomain {
 		this.schoolList = schoolList;
 	}
 
-	public DistrictDomain(String schoolName, String postcode, Integer capacity,
-			List<SchoolDomain> districtList) {
+	public DistrictDTO(String schoolName, String postcode, Integer capacity, List<SchoolDTO> schoolList) {
 		super();
 		this.schoolName = schoolName;
 		this.postcode = postcode;
@@ -81,24 +65,18 @@ public class DistrictDomain {
 		this.capacity = capacity;
 	}
 
-	public List<SchoolDomain> getSchoolList() {
+	public List<SchoolDTO> getSchoolList() {
 		return schoolList;
 	}
 
-	public void setSchoolList(List<SchoolDomain> schoolList) {
+	public void setSchoolList(List<SchoolDTO> schoolList) {
 		this.schoolList = schoolList;
 	}
-
-	@Override
-	public String toString() {
-		return "DistrictDomain [id=" + id + ", schoolName=" + schoolName + ", postcode=" + postcode + ", capacity="
-				+ capacity + ", schoolList=" + schoolList + "]";
-	}
+	
+	
 	
 	
 	
 	
 
-	
-	
 }
