@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class SchoolDomain {
@@ -20,6 +21,10 @@ public class SchoolDomain {
 	private String favSubject;
 	private Integer age;
 	
+	//Mapping Intermediate relationship: 
+	@ManyToOne
+	private DistrictDomain theSchool;
+	
 	//Generating Constructors:
 	
 	public SchoolDomain() {
@@ -28,7 +33,8 @@ public class SchoolDomain {
 	}
 
 	//Constructor with id:
-	public SchoolDomain(Long id, String name, String email, String surname, String favSubject, Integer age) {
+	public SchoolDomain(Long id, String name, String email, String surname, String favSubject, Integer age,
+			DistrictDomain theSchool) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -36,16 +42,19 @@ public class SchoolDomain {
 		this.surname = surname;
 		this.favSubject = favSubject;
 		this.age = age;
+		this.theSchool = theSchool;
 	}
 
 	//Constructor without id: 
-	public SchoolDomain(String name, String email, String surname, String favSubject, Integer age) {
+	public SchoolDomain(String name, String email, String surname, String favSubject, Integer age,
+			DistrictDomain theSchool) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.surname = surname;
 		this.favSubject = favSubject;
 		this.age = age;
+		this.theSchool = theSchool;
 	}
 
 	//Getters and Setters: 
@@ -97,21 +106,22 @@ public class SchoolDomain {
 		this.age = age;
 	}
 
+	public DistrictDomain getTheSchool() {
+		return theSchool;
+	}
+
+	public void setTheSchool(DistrictDomain theSchool) {
+		this.theSchool = theSchool;
+	}
+
 	@Override
 	public String toString() {
 		return "SchoolDomain [id=" + id + ", name=" + name + ", email=" + email + ", surname=" + surname
-				+ ", favSubject=" + favSubject + ", age=" + age + "]";
+				+ ", favSubject=" + favSubject + ", age=" + age + ", theSchool=" + theSchool + "]";
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
 
+	
 	
 }
