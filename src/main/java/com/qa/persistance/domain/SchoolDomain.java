@@ -16,6 +16,7 @@ public class SchoolDomain {
 	
 	private String name;
 	private String email;
+	private String surname;
 	private String favSubject;
 	private Integer age;
 	
@@ -26,25 +27,28 @@ public class SchoolDomain {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SchoolDomain(Long id, String name, String email, String favSubject, Integer age) {
+	//Constructor with id:
+	public SchoolDomain(Long id, String name, String email, String surname, String favSubject, Integer age) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
+		this.surname = surname;
 		this.favSubject = favSubject;
 		this.age = age;
 	}
 
-	public SchoolDomain(String name, String email, String favSubject, Integer age) {
+	//Constructor without id: 
+	public SchoolDomain(String name, String email, String surname, String favSubject, Integer age) {
 		super();
 		this.name = name;
 		this.email = email;
+		this.surname = surname;
 		this.favSubject = favSubject;
 		this.age = age;
 	}
-	
-	//Generating getters and setters: 
 
+	//Getters and Setters: 
 	public Long getId() {
 		return id;
 	}
@@ -69,6 +73,14 @@ public class SchoolDomain {
 		this.email = email;
 	}
 
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
 	public String getFavSubject() {
 		return favSubject;
 	}
@@ -87,9 +99,12 @@ public class SchoolDomain {
 
 	@Override
 	public String toString() {
-		return "SchoolDomain [id=" + id + ", name=" + name + ", email=" + email + ", favSubject=" + favSubject
-				+ ", age=" + age + "]";
+		return "SchoolDomain [id=" + id + ", name=" + name + ", email=" + email + ", surname=" + surname
+				+ ", favSubject=" + favSubject + ", age=" + age + "]";
 	}
+	
+	
+	
 	
 	
 	
